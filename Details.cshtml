@@ -1,0 +1,50 @@
+﻿@model AgendaBSS.Models.Tarefa
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Detalhes do Aluno</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_Cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Entrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaAnexos.ToList())
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaCheckList.ToList())
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Retorna", "Index")
+</p>

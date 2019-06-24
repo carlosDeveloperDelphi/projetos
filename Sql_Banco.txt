@@ -1,0 +1,72 @@
+-- Table: public.t_anexos
+
+-- DROP TABLE public.t_anexos;
+
+CREATE TABLE public.t_anexos
+(
+    id integer NOT NULL DEFAULT nextval('t_anexos_id_seq'::regclass),
+    caminho_arquivo character varying(200) COLLATE pg_catalog."default",
+    idtarefa integer,
+    CONSTRAINT t_anexos_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_anexo_tarefa FOREIGN KEY (idtarefa)
+        REFERENCES public.t_tarefa (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.t_anexos
+    OWNER to postgres;
+
+Alter Table t_anexos ALTER COLUMN id SET DEFAULT NEXTVAL('t_anexos_id_seq'::regclass);
+
+-- Table: public.t_checklist
+
+-- DROP TABLE public.t_checklist;
+
+CREATE TABLE public.t_checklist
+(
+    id integer NOT NULL DEFAULT nextval('t_checklist_id_seq'::regclass),
+    checklist character varying(200) COLLATE pg_catalog."default",
+    idtarefa integer,
+    CONSTRAINT t_checklist_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_checklist_tarefa FOREIGN KEY (idtarefa)
+        REFERENCES public.t_tarefa (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.t_checklist
+    OWNER to postgres;
+
+Alter Table t_checklist ALTER COLUMN id SET DEFAULT NEXTVAL('t_checklist_id_seq'::regclass);
+
+-- Table: public.t_tarefa
+
+-- DROP TABLE public.t_tarefa;
+
+CREATE TABLE public.t_tarefa
+(
+    titulo character varying(100) COLLATE pg_catalog."default",
+    id integer NOT NULL DEFAULT nextval('t_tarefa_id_seq'::regclass),
+    data_entrega date,
+    data_cadastro timestamp without time zone,
+    descricao character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT t_tarefa_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.t_tarefa
+    OWNER to postgres;
+
+Alter Table t_tarefa ALTER COLUMN id SET DEFAULT NEXTVAL('t_tarefa_id_seq'::regclass);
